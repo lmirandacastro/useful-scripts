@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import json
-import re
 import redis
 from typing import Set
 
