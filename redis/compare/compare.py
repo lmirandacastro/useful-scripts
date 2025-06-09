@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 import json
+import re
 import redis
 from typing import Set
 
@@ -55,6 +57,21 @@ def compare_redis_keys(
         redis1.close()
         redis2.close()
 
+def string_to_float_if_possible(s):
+    """
+    Converts a string to a float if possible.
+    Returns the float value if the conversion is successful,
+    otherwise returns the original string.
+    """
+    try:
+        return float(s)
+    except ValueError:
+        return s
+
+def clean_and_sort_dict(d: dict) -> dict:
+    """Convert keys to str and sort a dictionary."""
+    return {k.decode('utf-8'): string_to_float_if_possible(v.decode('utf-8')) for k, v in d.items()}
+
 def compare_key_content(redis1: redis.Redis, redis2: redis.Redis, key1: str, key2: str) -> None:
     """Compare contents of a key between two Redis instances."""
     try:
@@ -65,30 +82,32 @@ def compare_key_content(redis1: redis.Redis, redis2: redis.Redis, key1: str, key
             print(f"Type mismatch for {key1} : {type1} and {key2} : {type2}")
             return
 
-        if type1 == b'string':
-            value1 = redis1.get(key1)
-            value2 = redis2.get(key2)
-        elif type1 == b'hash':
-            value1 = redis1.hgetall(key1)
-            value2 = redis2.hgetall(key2)
-        elif type1 == b'list':
-            value1 = redis1.lrange(key1, 0, -1)
-            value2 = redis2.lrange(key2, 0, -1)
-        elif type1 == b'set':
-            value1 = redis1.smembers(key1)
-            value2 = redis2.smembers(key2)
-        elif type1 == b'zset':
-            value1 = redis1.zrange(key1, 0, -1)
-            value2 = redis2.zrange(key2, 0, -1)
-        else:
-            print(f"Unsupported type for key: {key1}")
-            return
+        match type1:
+            case b'string':
+                value1 = redis1.get(key1)
+                value2 = redis2.get(key2)
+            case b'hash':
+                value1 = clean_and_sort_dict(redis1.hgetall(key1))
+                value2 = clean_and_sort_dict(redis2.hgetall(key2))
+            case b'list':
+                value1 = redis1.lrange(key1, 0, -1)
+                value2 = redis2.lrange(key2, 0, -1)
+            case b'set':
+                value1 = redis1.smembers(key1)
+                value2 = redis2.smembers(key2)
+            case b'zset':
+                value1 = redis1.zrange(key1, 0, -1)
+                value2 = redis2.zrange(key2, 0, -1)
+            case _:
+                print(f"Unsupported type for key: {key1}")
+                return
 
         if value1 != value2:
-            print(f"Content mismatch for keys {key1} and {key2}")
+            print(f"Content mismatch for keys {key1} and {key2} type: {type1.decode('utf-8')}")
 
     except Exception as e:
         print(f"Error comparing contents for keys {key1} and {key2}: {e}")
 
 if __name__ == "__main__":
     compare_redis_keys("redis://localhost:9000", "redis://localhost:6379", tags=[r':{arenaPartition}', r'_key'])
+
