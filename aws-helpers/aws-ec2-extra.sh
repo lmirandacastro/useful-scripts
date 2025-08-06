@@ -6,6 +6,16 @@ function aws-login() {  eval $( $OWL/bin/owl aws-login "$@" ) ; };
 # aws-login --account dev-twilio
 # aws-ec2 --ssm --role messaging-ratequeue-master --account dev-twilio --dev-us1 --sid HOaf9ecd82e5c403807f780b03f180a3a8
 
+COLOR_BLACK="\e[30m"
+COLOR_RED="\e[31m"
+COLOR_GREEN="\e[32m"
+COLOR_YELLOW="\e[33m"
+COLOR_BLUE="\e[34m"
+COLOR_MAGENTA="\e[35m"
+COLOR_CYAN="\e[36m"
+COLOR_WHITE="\e[37m"
+COLOR_RESET="\e[0m"
+
 function aws-world-selector() {
 	echo "Select World"
   echo "1. classic"
@@ -59,6 +69,7 @@ function role-selector() {
     return 0
   fi
 }
+
 
 function aws-new-ec2() {
 	sid=$1
@@ -121,11 +132,10 @@ function aws-new-ec2() {
   realm=$envprefix$realmprefix
   account="${worldprefix}${envprefix}twilio"
 
-
-  # echo realm $realm
-  # echo account $account
-  # echo $role
-
+  echo -e "${COLOR_WHITE} Login into aws account ${COLOR_GREEN} ${account} ${COLOR_WHITE}. Using: ${COLOR_RESET}"
+  echo "aws-login --account ${account}"
+	aws-login --account ${account}
+	echo -e "${COLOR_YELLOW} command for ec2 connect: ${COLOR_RESET}"
 	echo "aws-ec2 --ssm --role ${role} --account ${account} --${realm} --sid ${sid} ${reasoncmd}"
 }
 
