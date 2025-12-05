@@ -1,0 +1,185 @@
+
+brew install firefox microsoft-edge
+brew install iterm2 warp
+brew install telegram whatsapp
+
+brew install git git-gui
+
+brew install coreutils htop btop wget jq curl readline mc openssh
+brew install redis ruby telnet python lua
+
+brew install intellij-idea zulu@11
+brew install visual-studio-code font-fira-code sublime-text
+
+brew install minikube kubectl
+
+brew install terraform@0.12
+
+brew install openjdk@11 openjdk@17
+
+brew install awscli 
+
+vim /Users/lmirandacastro/.gitconfig
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
+
+brew tap twilio-internal/tap
+brew install kubectl-otk
+
+abseil
+asdf
+augeas
+autoconf
+autojump
+automake
+aws-iam-authenticator
+awscli
+buildkite-agent
+c-ares
+ca-certificates
+certbot
+certifi
+cffi
+check
+coreutils
+cryptography
+dialog
+docker-completion
+docutils
+fish
+fribidi
+gdbm
+gettext
+gh
+gnirehtet
+gnutls
+helm
+istioctl
+jemalloc
+jq
+json-c
+jsoncpp
+keyring
+kubectx
+kubernetes-cli
+leptonica
+libarchive
+libb2
+libev
+libevent
+libgcrypt
+libgpg-error
+libmaxminddb
+libpaper
+libpthread-stubs
+libsmi
+libsodium
+libssh
+libtasn1
+libtool
+libuv
+libxdmcp
+libxext
+libyubikey
+locust
+
+lua@5.1
+luarocks
+m4
+maven@3.3
+maven@3.5
+maven@3.6
+midnight-commander
+minikube
+mitmproxy
+mysql
+nettle
+nghttp2
+nginx
+node
+openjdk
+openjpeg
+opensc
+openssl@1.1
+openssl@3
+osx-cpu-temp
+p11-kit
+p7zip
+pango
+pcre2
+pcsc-lite
+pkg-config
+protobuf
+protobuf@21
+pstree
+psutils
+putty
+pycparser
+pyenv
+pyenv-virtualenv
+python-brotli
+python-certifi
+python-click
+python-cryptography
+python-markupsafe
+python-psutil
+python-pyparsing
+python-pytz
+python-setuptools
+python-typing-extensions
+python@3.10
+python@3.11
+python@3.12
+python@3.9
+rbenv
+rbenv-chefdk
+ruby-build
+sbt
+scala
+six
+sonar-scanner
+sonarqube-lts
+speexdsp
+tcl-tk
+tesseract
+unbound
+unixodbc
+watch
+webp
+
+
+
+ykman
+ykpers
+zeromq
+zlib
+
+
+
+adobe-acrobat-reader
+android-platform-tools
+authy
+chefdk
+docker
+
+
+gimp
+
+
+jdiskreport
+macsvg
+
+omnidisksweeper
+postman
+pycharm
+
+stats
+
+vagrant
+virtualbox
+xquartz
+zulu-mc
+
+
+yabai
+skhd
