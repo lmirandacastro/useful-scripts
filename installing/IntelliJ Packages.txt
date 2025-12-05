@@ -1,0 +1,19 @@
+
+Subversion
+JavaScript & TypeScript
+Apache Velocity
+CSV Editor
+CheckStyle-IDEA
+
+Darcula Darker Themen
+
+Docker
+EnvFile
+GitHub
+GitHub Copilot
+YAML
+
+Maven
+
+Code Coverage for Java
+
