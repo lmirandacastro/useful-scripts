@@ -5,7 +5,9 @@ Apache Velocity
 CSV Editor
 CheckStyle-IDEA
 
-Darcula Darker Themen
+Darcula Darker Theme
+Python
+String Manipulation
 
 Docker
 EnvFile
